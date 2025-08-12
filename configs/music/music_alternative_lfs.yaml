@@ -1,0 +1,23 @@
+task: weak
+data:
+  train: linkage_problems/Music/music_train_pairs_fv.csv
+  test:  linkage_problems/Music/music_test_pairs_fv.csv
+model:
+  name: rf
+  params:
+    n_estimators: 100
+    random_state: 42
+lfs:
+  - {type: single_feature, feature: title_jaccard, high: 0.85, low: 0.15}
+  - {type: single_feature, feature: artist_jaccard, high: 0.80, low: 0.20}
+  - {type: count_high, value_thresh: 0.8, min_count: 10, max_count_nonmatch: 2}
+  - {type: median, high: 0.75, low: 0.25}
+  - {type: low_all, max_value: 0.2}
+  - {type: graph, threshold: 0.5, min_component_size: 2}
+per_lf: true
+combine: true
+label_model:
+  n_epochs: 200
+  lr: 0.01
+output:
+  md: results/music/2_evaluation_alternative_LFs.md

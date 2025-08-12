@@ -1,0 +1,21 @@
+task: weak
+data:
+  train: linkage_problems/wdc_almser/wdc_almser_train_pairs_fv.csv
+  test:  linkage_problems/wdc_almser/wdc_almser_test_pairs_fv.csv
+  exclude: ["exclude"]
+model:
+  name: lr
+  params:
+    max_iter: 1000
+    class_weight: balanced
+lfs:
+  - {type: average, high: 0.90, low: 0.10}
+  - {type: median,  high: 0.80, low: 0.20}
+  - {type: graph,   threshold: 0.85, min_component_size: 3}
+per_lf: true
+combine: true
+label_model:
+  n_epochs: 200
+  lr: 0.01
+output:
+  md: results/wdc/5_evaluation_LR_best_found_dev_tuning_wdc_almser.md

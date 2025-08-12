@@ -1,0 +1,11 @@
+task: supervised
+data:
+  train: linkage_problems/Music/music_train_pairs_fv.csv
+  test:  linkage_problems/Music/music_test_pairs_fv.csv
+model:
+  name: rf
+  params:
+    n_estimators: 100
+    random_state: 42
+output:
+  md: results/music/0a_evaluation_supervised_RF.md

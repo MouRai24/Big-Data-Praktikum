@@ -1,0 +1,12 @@
+task: supervised
+data:
+  train: linkage_problems/wdc_almser/wdc_almser_train_pairs_fv.csv
+  test:  linkage_problems/wdc_almser/wdc_almser_test_pairs_fv.csv
+  exclude: ["exclude"]
+model:
+  name: lr
+  params:
+    max_iter: 1000
+    class_weight: balanced
+output:
+  md: results/wdc/0b_evaluation_supervised_LR_wdc.md

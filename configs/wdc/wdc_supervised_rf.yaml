@@ -1,0 +1,12 @@
+task: supervised
+data:
+  train: linkage_problems/wdc_almser/wdc_almser_train_pairs_fv.csv
+  test:  linkage_problems/wdc_almser/wdc_almser_test_pairs_fv.csv
+  exclude: ["exclude"]
+model:
+  name: rf
+  params:
+    n_estimators: 100
+    random_state: 42
+output:
+  md: results/wdc/0a_evaluation_supervised_RF_wdc.md

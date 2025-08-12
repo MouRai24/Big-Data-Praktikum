@@ -1,0 +1,27 @@
+task: tune_kfold
+data:
+  train: linkage_problems/Music/music_train_pairs_fv.csv
+  test:  linkage_problems/Music/music_test_pairs_fv.csv
+tuning:
+  folds: 5
+  lfs:
+    - name: lf_average
+      type: average
+      grid:
+        - {high: 0.6, low: 0.1}
+        - {high: 0.7, low: 0.1}
+        - {high: 0.8, low: 0.2}
+    - name: lf_median
+      type: median
+      grid:
+        - {high: 0.6, low: 0.2}
+        - {high: 0.7, low: 0.2}
+        - {high: 0.75, low: 0.25}
+    - name: lf_graph
+      type: graph
+      grid:
+        - {threshold: 0.5}
+        - {threshold: 0.75}
+        - {threshold: 0.8}
+output:
+  md: results/music/4_evaluation_kfold.md

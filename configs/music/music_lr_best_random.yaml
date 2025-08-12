@@ -1,0 +1,20 @@
+task: weak
+data:
+  train: linkage_problems/Music/music_train_pairs_fv.csv
+  test:  linkage_problems/Music/music_test_pairs_fv.csv
+model:
+  name: lr
+  params:
+    max_iter: 1000
+    class_weight: balanced
+lfs:
+  - {type: average, high: 0.8,  low: 0.2}
+  - {type: median,  high: 0.75, low: 0.25}
+  - {type: graph,   threshold: 0.8, min_component_size: 3}
+per_lf: true
+combine: true
+label_model:
+  n_epochs: 200
+  lr: 0.01
+output:
+  md: results/music/5a_evaluation_LR_best_found_randomly.md

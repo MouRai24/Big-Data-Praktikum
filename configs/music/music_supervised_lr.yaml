@@ -1,0 +1,11 @@
+task: supervised
+data:
+  train: linkage_problems/Music/music_train_pairs_fv.csv
+  test:  linkage_problems/Music/music_test_pairs_fv.csv
+model:
+  name: lr
+  params:
+    max_iter: 1000
+    class_weight: balanced
+output:
+  md: results/music/0b_supervised_evaluation_LR.md

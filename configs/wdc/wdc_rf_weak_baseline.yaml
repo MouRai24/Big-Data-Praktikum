@@ -1,0 +1,22 @@
+task: weak
+data:
+  train: linkage_problems/wdc_almser/wdc_almser_train_pairs_fv.csv
+  test:  linkage_problems/wdc_almser/wdc_almser_test_pairs_fv.csv
+  exclude: ["exclude"]
+model:
+  name: rf
+  params:
+    n_estimators: 100
+    random_state: 42
+lfs:
+  - {type: average,  high: 0.80, low: 0.20}
+  - {type: variance, high: 0.80, low: 0.20}
+  - {type: weighted, high: 0.75, low: 0.25}
+  - {type: graph,    threshold: 0.80, min_component_size: 3}
+per_lf: true
+combine: true
+label_model:
+  n_epochs: 200
+  lr: 0.01
+output:
+  md: results/wdc/1_RF_wdc_almser.md

@@ -1,0 +1,28 @@
+task: tune_dev
+data:
+  train: linkage_problems/wdc_almser/wdc_almser_train_pairs_fv.csv
+  test:  linkage_problems/wdc_almser/wdc_almser_test_pairs_fv.csv
+  exclude: ["exclude"]
+tuning:
+  dev_size: 0.10
+  lfs:
+    - name: lf_average
+      type: average
+      grid:
+        - {high: 0.70, low: 0.10}
+        - {high: 0.80, low: 0.20}
+        - {high: 0.90, low: 0.10}
+    - name: lf_median
+      type: median
+      grid:
+        - {high: 0.60, low: 0.20}
+        - {high: 0.70, low: 0.20}
+        - {high: 0.80, low: 0.20}
+    - name: lf_graph
+      type: graph
+      grid:
+        - {threshold: 0.70}
+        - {threshold: 0.75}
+        - {threshold: 0.85}
+output:
+  md: results/wdc/3_evaluation_dev_tuning_wdc.md
